@@ -3,6 +3,7 @@ syntax="proto3";
 package goods;
 
 option go_package="github.com/DuC-cnZj/goods_proto";
+option php_metadata_namespace = "Goods";
 
 message Request {
   string name = 1;
