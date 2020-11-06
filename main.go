@@ -1,22 +1,21 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"github.com/DuC-cnZj/order_protos"
-	"github.com/golang/protobuf/ptypes/empty"
+	goods_proto "github.com/DuC-cnZj/micro-goods/protos"
+	goods "github.com/DuC-cnZj/micro-goods/services"
 	"google.golang.org/grpc"
+	"log"
+	"net"
 )
 
 func main() {
-	dial, err := grpc.Dial("localhost:6666", grpc.WithInsecure())
+	lis, err := net.Listen("tcp", ":9999")
 	if err != nil {
 		panic(err)
 	}
-	client := order_protos.NewOrderClient(dial)
-	list, err := client.List(context.Background(), &empty.Empty{})
-	if err != nil {
-		panic(err)
+	server := grpc.NewServer()
+	goods_proto.RegisterBBQServer(server, &goods.Goods{})
+	if err := server.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
 	}
-	fmt.Println(list)
 }

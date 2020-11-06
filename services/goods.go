@@ -2,7 +2,7 @@ package goods
 
 import (
 	"context"
-	"github.com/DuC-cnZj/micro-goods/protos"
+	goods_proto "github.com/DuC-cnZj/micro-goods/protos"
 	"log"
 )
 
