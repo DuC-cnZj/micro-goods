@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package goods;
+
+option go_package="github.com/DuC-cnZj/goods_proto";
+
+message Request {
+  string name = 1;
+}
+
+message Response {
+  string code = 1;
+  string msg = 2;
+}
+
+service BBQ {
+  rpc eat(Request) returns (Response);
+}
