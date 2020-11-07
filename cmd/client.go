@@ -18,9 +18,11 @@ func main() {
 	}
 	defer dialGoods.Close()
 	defer dialOrder.Close()
-	goodsClient := goods_proto.NewBBQClient(dialGoods)
+	goodsClient := goods_proto.NewIphoneClient(dialGoods)
 	orderClient := order_protos.NewOrderClient(dialOrder)
-	eat, err := goodsClient.Eat(context.Background(), &goods_proto.Request{})
+	eat, err := goodsClient.GetOneByType(context.Background(), &goods_proto.Request{
+		Type: 11,
+	})
 	if err != nil {
 		panic(err)
 	}
@@ -29,6 +31,6 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("goods eat: ", eat)
+	fmt.Println("goods GetOneByType: ", eat)
 	fmt.Println("order list: ", list)
 }

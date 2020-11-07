@@ -6,7 +6,7 @@ option go_package="github.com/DuC-cnZj/goods_proto";
 option php_metadata_namespace = "Goods";
 
 message Request {
-  string name = 1;
+  int32 type = 1;
 }
 
 message Response {
@@ -14,6 +14,6 @@ message Response {
   string msg = 2;
 }
 
-service BBQ {
-  rpc eat(Request) returns (Response);
+service Iphone {
+  rpc getOneByType(Request) returns (Response);
 }

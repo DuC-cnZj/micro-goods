@@ -14,7 +14,7 @@ func main() {
 		panic(err)
 	}
 	server := grpc.NewServer()
-	goods_proto.RegisterBBQServer(server, &goods.Goods{})
+	goods_proto.RegisterIphoneServer(server, &goods.Iphone{})
 	if err := server.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
